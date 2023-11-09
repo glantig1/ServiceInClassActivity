@@ -10,13 +10,10 @@ import android.util.Log
 class TimerService : Service() {
 
     private var isRunning = false
-
     lateinit var t: TimerThread
-
     private var paused = false
 
     inner class TimerBinder : Binder() {
-
         // Check if Timer is already running
         var isRunning: Boolean
             get() = this@TimerService.isRunning
