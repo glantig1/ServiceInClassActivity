@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_start"
+        android:icon="@android:drawable/presence_online"
+        android:title="Start"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/action_pause"
+        android:icon="@android:drawable/presence_invisible"
+        android:title="Pause"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/action_stop"
+        android:icon="@android:drawable/presence_busy"
+        android:title="Stop"
+        app:showAsAction="ifRoom|withText" />
+</menu>

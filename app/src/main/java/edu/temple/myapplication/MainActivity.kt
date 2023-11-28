@@ -8,8 +8,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     lateinit var timerTV: TextView
@@ -44,18 +47,31 @@ class MainActivity : AppCompatActivity() {
             BIND_AUTO_CREATE
         )
 
-        findViewById<Button>(R.id.startButton).setOnClickListener {
-            if(isConnected) timerBinder.start(10)
-        }
-
-        findViewById<Button>(R.id.pauseButton).setOnClickListener {
-            if(isConnected) timerBinder.pause()
-        }
-        
-        findViewById<Button>(R.id.stopButton).setOnClickListener {
-            if(isConnected) timerBinder.stop()
-        }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_pause->{
+                Toast.makeText(this,"pause",Toast.LENGTH_SHORT).show()
+                if(isConnected) timerBinder.pause()
+            }
+            R.id.action_start->{
+                Toast.makeText(this,"start",Toast.LENGTH_SHORT).show()
+                if(isConnected) timerBinder.start(10)
+            }
+            R.id.action_stop->{
+                Toast.makeText(this,"stop",Toast.LENGTH_SHORT).show()
+                if(isConnected) timerBinder.stop()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     override fun onDestroy() {
         unbindService(serviceConnection)
